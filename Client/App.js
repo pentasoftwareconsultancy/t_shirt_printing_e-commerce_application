@@ -8,6 +8,7 @@ import SearchScreen from "./src/screens/SearchScreen";
 import CartScreen from "./src/screens/CartScreen";
 import FavouriteScreen from "./src/screens/FavouriteScreen";
 import UserProfileScreen from "./src/screens/UserProfileScreen";
+import CategoriesScreen from "./src/screens/CategoriesScreen";
 
 // Create Tab Navigator
 const Tab = createBottomTabNavigator();
@@ -43,24 +44,30 @@ const App = () => {
           headerRight: () => {
             const navigation = useNavigation(); // Use the navigation hook inside the header function
 
-            return (
-              <>
-                <Ionicons
-                  name="search"
-                  size={25}
-                  color="black"
-                  style={{ marginLeft: 15 }}
-                  onPress={() => navigation.navigate('Search')} // Navigate to the Search screen on press
-                />
-                <Ionicons
-                  name="notifications"
-                  size={25}
-                  color="black"
-                  style={{ marginLeft: 15, marginRight: 15 }}
-                  onPress={() => alert('Notifications clicked!')} // Handle notifications click
-                />
-              </>
-            );
+            // Show search and notifications icons only if the current screen is 'Home'
+            if (route.name === 'Home') {
+              return (
+                <>
+                  <Ionicons
+                    name="search"
+                    size={25}
+                    color="black"
+                    style={{ marginLeft: 15 }}
+                    onPress={() => navigation.navigate('Search')} // Navigate to the Search screen on press
+                  />
+                  <Ionicons
+                    name="notifications"
+                    size={25}
+                    color="black"
+                    style={{ marginLeft: 15, marginRight: 15 }}
+                    onPress={() => alert('Notifications clicked!')} // Handle notifications click
+                  />
+                </>
+              );
+            }
+
+            // Return null if not on the Home screen, so no icons are shown
+            return null;
           },
         })}
         tabBarOptions={{
@@ -70,10 +77,9 @@ const App = () => {
       >
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Search" component={SearchScreen} />
-        <Tab.Screen name="Categories" component={CartScreen} />
+        <Tab.Screen name="Categories" component={CategoriesScreen} />
         <Tab.Screen name="Account" component={UserProfileScreen} />
         <Tab.Screen name="Cart" component={CartScreen} />
-        
       </Tab.Navigator>
     </NavigationContainer>
   );
