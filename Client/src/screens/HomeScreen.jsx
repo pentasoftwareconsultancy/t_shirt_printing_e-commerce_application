@@ -52,6 +52,20 @@ const HomeScreen = ({ navigation }) => {
                     <Image source={require('../assets/images/product1.jpeg')} style={styles.cardImage} />
                     <Text style={styles.cardText}>Product 1</Text>
                 </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.card}
+                    onPress={() => navigation.navigate('ProductDetail')}
+                >
+                    <Image source={require('../assets/images/product1.jpeg')} style={styles.cardImage} />
+                    <Text style={styles.cardText}>Product 1</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.card}
+                    onPress={() => navigation.navigate('ProductDetail')}
+                >
+                    <Image source={require('../assets/images/product1.jpeg')} style={styles.cardImage} />
+                    <Text style={styles.cardText}>Product 1</Text>
+                </TouchableOpacity>
             </ScrollView>
             {/* Best Sellers Section */}
             <Text style={styles.sectionTitle}>Best Sellers</Text>
@@ -63,10 +77,38 @@ const HomeScreen = ({ navigation }) => {
                     <Image source={require('../assets/images/product2.jpeg')} style={styles.cardImage} />
                     <Text style={styles.cardText}>Product 2</Text>
                 </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.card}
+                    onPress={() => navigation.navigate('ProductDetail')}
+                >
+                    <Image source={require('../assets/images/product2.jpeg')} style={styles.cardImage} />
+                    <Text style={styles.cardText}>Product 2</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.card}
+                    onPress={() => navigation.navigate('ProductDetail')}
+                >
+                    <Image source={require('../assets/images/product2.jpeg')} style={styles.cardImage} />
+                    <Text style={styles.cardText}>Product 2</Text>
+                </TouchableOpacity>
             </ScrollView>
             {/* Trending Products Section */}
             <Text style={styles.sectionTitle}>Trending</Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                <TouchableOpacity
+                    style={styles.card}
+                    onPress={() => navigation.navigate('ProductDetail')}
+                >
+                    <Image source={require('../assets/images/product3.jpeg')} style={styles.cardImage} />
+                    <Text style={styles.cardText}>Product 3</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.card}
+                    onPress={() => navigation.navigate('ProductDetail')}
+                >
+                    <Image source={require('../assets/images/product3.jpeg')} style={styles.cardImage} />
+                    <Text style={styles.cardText}>Product 3</Text>
+                </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.card}
                     onPress={() => navigation.navigate('ProductDetail')}
@@ -101,7 +143,7 @@ const styles = StyleSheet.create({
     },
     cardImage: {
         width: '100%',
-        height: 100,
+        height: 150,
         resizeMode: 'cover',
     },
     cardText: {

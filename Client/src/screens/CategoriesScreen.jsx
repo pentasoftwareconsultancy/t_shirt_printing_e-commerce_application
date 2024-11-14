@@ -89,9 +89,10 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   cardImageContainer: {
-    width: 330,
+    marginTop: -15,
+    width: 340,
     height: 350,
-    borderRadius: 20,
+    borderRadius: 30,
     overflow: 'hidden',
    
   },
@@ -109,6 +110,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   infoContainer: {
+    marginLeft:5,
     position: 'absolute',
     bottom: 10,
     left: 10,
