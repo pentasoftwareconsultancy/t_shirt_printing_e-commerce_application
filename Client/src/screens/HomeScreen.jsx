@@ -118,35 +118,48 @@ const styles = StyleSheet.create({
         marginVertical: 10,
     },
     card: {
+        
         width: 150,
+        height: 200,
+        marginTop: 5,
+        marginBottom: 50,
         marginRight: 10,
-        borderRadius: 10,
+        borderRadius: 20,
         overflow: 'hidden',
         backgroundColor: '#f0f0f0',
+        padding: 10,           // Adjust padding to create space for content inside the card
+        alignItems: 'center',  // Centers content horizontally if needed
     },
+    
     cardImage: {
-        width: '100%',
-        height: 150,
-        resizeMode: 'cover',
+        marginTop: -5,
+        width: 140,         // Matches the card's width
+        height: 160,           // Adjust height to fit proportionally
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        resizeMode: 'cover',   // Ensures the image fills the space without stretching
     },
+    
+    
+      
     cardText: {
         padding: 5,
         textAlign: 'center',
-        fontSize: 14,
+        fontSize: 16,
         fontWeight: '600',
     },
-    buyNowButton: {
-        position: 'absolute',
-        bottom: 10,
-        left: 10,
-        backgroundColor: '#FF5733',
-        padding: 5,
-        borderRadius: 5,
-    },
-    buyNowText: {
-        color: 'white',
-        fontWeight: 'bold',
-    },
+    // buyNowButton: {
+    //     position: 'absolute',
+    //     bottom: 10,
+    //     left: 10,
+    //     backgroundColor: '#FF5733',
+    //     padding: 5,
+    //     borderRadius: 5,
+    // },
+    // buyNowText: {
+    //     color: 'white',
+    //     fontWeight: 'bold',
+    // },
     colorOptions: {
         position: 'absolute',
         bottom: 10,
