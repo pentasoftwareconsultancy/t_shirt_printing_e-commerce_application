@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ScrollView, StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 
 const HomeScreen = ({ navigation }) => {
@@ -20,25 +20,48 @@ const HomeScreen = ({ navigation }) => {
     // Sample slider data with images and color options
     const sliderData = [
         {
-            image: require('../assets/images/product1.jpeg'),
-            colors: ['#FF5733', '#33FF57', '#3357FF'],
+            image: require('../assets/images/product1_default.jpg'),
+            colors: [
+                { color: '#FF5733', image: require('../assets/images/product1_red.jpg') },
+                { color: '#33FF57', image: require('../assets/images/product1_green.jpg') },
+                { color: '#3357FF', image: require('../assets/images/product1_blue.jpg') },
+            ],
         },
         {
-            image: require('../assets/images/product2.jpeg'),
-            colors: ['#FFFF33', '#57FF33', '#5733FF'],
+            image: require('../assets/images/product2_default.jpeg'),
+            colors: [
+                { color: '#FFFF33', image: require('../assets/images/product2_yellow.jpeg') },
+                { color: '#57FF33', image: require('../assets/images/product2_lightgreen.jpeg') },
+                { color: '#5733FF', image: require('../assets/images/product2_purple.jpeg') },
+            ],
+        },
+        {
+            image: require('../assets/images/product2_default.jpeg'),
+            colors: [
+                { color: '#FFFF33', image: require('../assets/images/product2_yellow.jpeg') },
+                { color: '#57FF33', image: require('../assets/images/product2_lightgreen.jpeg') },
+                { color: '#5733FF', image: require('../assets/images/product2_purple.jpeg') },
+            ],
         },
     ];
+
+    // State to track the selected color for each product slider
+    const [selectedImage, setSelectedImage] = useState(sliderData[0].image);
 
     // Render individual slider item with 'Buy Now' button and color options
     const renderSliderItem = (item) => (
         <View style={styles.sliderItem}>
-            <Image source={item.image} style={styles.sliderImage} />
+            <Image source={selectedImage} style={styles.sliderImage} />
             <TouchableOpacity style={styles.buyNowButton} onPress={() => navigation.navigate('ProductDetail')}>
                 <Text style={styles.buyNowText}>Buy Now</Text>
             </TouchableOpacity>
             <View style={styles.colorOptions}>
-                {item.colors.map((color, index) => (
-                    <View key={index} style={[styles.colorOption, { backgroundColor: color }]} />
+                {item.colors.map((colorOption, index) => (
+                    <TouchableOpacity
+                        key={index}
+                        style={[styles.colorOption, { backgroundColor: colorOption.color }]}
+                        onPress={() => setSelectedImage(colorOption.image)} // Change image on color click
+                    />
                 ))}
             </View>
         </View>
@@ -59,9 +82,13 @@ const HomeScreen = ({ navigation }) => {
             {/* New Releases Section */}
             <Text style={styles.sectionTitle}>New Releases</Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('ProductDetail')}>
+                    <Image source={require('../assets/images/product2.jpeg')} style={styles.cardImage} />
+                    <Text style={styles.cardText}>Product 2</Text>
+                </TouchableOpacity>
                 <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('ProductDetail')}>
-                    <Image source={require('../assets/images/product1.jpeg')} style={styles.cardImage} />
-                    <Text style={styles.cardText}>Product 1</Text>
+                    <Image source={require('../assets/images/product2.jpeg')} style={styles.cardImage} />
+                    <Text style={styles.cardText}>Product 2</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('ProductDetail')}>
                     <Image source={require('../assets/images/product2.jpeg')} style={styles.cardImage} />
@@ -75,6 +102,10 @@ const HomeScreen = ({ navigation }) => {
                 <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('ProductDetail')}>
                     <Image source={require('../assets/images/product3.jpeg')} style={styles.cardImage} />
                     <Text style={styles.cardText}>Product 3</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('ProductDetail')}>
+                    <Image source={require('../assets/images/product3.jpeg')} style={styles.cardImage} />
+                    <Text style={styles.cardText}>Product 4</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('ProductDetail')}>
                     <Image source={require('../assets/images/product3.jpeg')} style={styles.cardImage} />
@@ -100,25 +131,25 @@ const styles = StyleSheet.create({
     },
     sliderContainer: {
         width: 300,
-        marginRight: 10,
+        marginRight: 2,
     },
     sliderItem: {
         width: 250,
-        height: 220,
+        height: 300,
         marginRight: 15,
         borderRadius: 10,
-        backgroundColor: '#f0f0f0',
+        backgroundColor: '#C8DDDC',
         overflow: 'hidden',
         justifyContent: 'center',
         alignItems: 'center',
         padding: 10,
     },
     sliderImage: {
-       width: '200',
-        height: '100%', // Ensure it takes up most of the slider item space
+        marginTop: -40,
+        width: 240,
+        height: 250, // Ensure it takes up most of the slider item space
         borderRadius: 10,
         resizeMode: 'cover',
-        alignItems: 'center',
     },
     buyNowButton: {
         position: 'absolute',
@@ -149,15 +180,17 @@ const styles = StyleSheet.create({
     card: {
         width: 150,
         height: 180,
-        marginRight: 10,
-        borderRadius: 20,
+        marginRight: 25,
+        borderRadius: 15,
         overflow: 'hidden',
         backgroundColor: '#f0f0f0',
         alignItems: 'center',
     },
     cardImage: {
-        width: '100%',
-        height: 140, // Keeps image height consistent
+        marginTop: 4,
+        borderRadius: 15,
+        width: 140,
+        height: 150, // Keeps image height consistent
         resizeMode: 'cover',
     },
     cardText: {
@@ -167,4 +200,3 @@ const styles = StyleSheet.create({
         fontWeight: '600',
     },
 });
-
