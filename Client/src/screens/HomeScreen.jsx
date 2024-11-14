@@ -1,12 +1,24 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { TouchableOpacity } from 'react-native';
-import { Image } from 'react-native';
+import React from 'react';
+import { ScrollView, StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 
 const HomeScreen = ({ navigation }) => {
 
+    // Set the header with logo on the left side
+    React.useLayoutEffect(() => {
+        navigation.setOptions({
+            headerLeft: () => (
+                <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+                    <Image
+                        source={require('../assets/images/Logo.png')} // Use your logo here
+                        style={{ width: 40, height: 40, marginLeft: 10 }}
+                    />
+                </TouchableOpacity>
+            ),
+        });
+    }, [navigation]);
+
+    // Render slider item for the product slider
     const renderSliderItem = ({ item }) => {
-        // Ensure item and image are properly passed and valid
         if (!item || !item.image) return null;
 
         return (
@@ -17,10 +29,7 @@ const HomeScreen = ({ navigation }) => {
                 </TouchableOpacity>
                 <View style={styles.colorOptions}>
                     {item.colors && item.colors.map((color, index) => (
-                        <View
-                            key={index}
-                            style={[styles.colorOption, { backgroundColor: color }]}
-                        />
+                        <View key={index} style={[styles.colorOption, { backgroundColor: color }]} />
                     ))}
                 </View>
             </View>
@@ -38,90 +47,64 @@ const HomeScreen = ({ navigation }) => {
             colors: ['#FFFF33', '#57FF33', '#5733FF'],
         },
     ];
+
     return (
         <ScrollView style={styles.container}>
             {/* Product Slider */}
-            
-            {/* New Releases Section */}
             <Text style={styles.sectionTitle}>New Releases</Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                <TouchableOpacity
-                    style={styles.card}
-                    onPress={() => navigation.navigate('ProductDetail')}
-                >
+                <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('ProductDetail')}>
                     <Image source={require('../assets/images/product1.jpeg')} style={styles.cardImage} />
                     <Text style={styles.cardText}>Product 1</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.card}
-                    onPress={() => navigation.navigate('ProductDetail')}
-                >
+                <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('ProductDetail')}>
                     <Image source={require('../assets/images/product1.jpeg')} style={styles.cardImage} />
                     <Text style={styles.cardText}>Product 1</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.card}
-                    onPress={() => navigation.navigate('ProductDetail')}
-                >
+                <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('ProductDetail')}>
                     <Image source={require('../assets/images/product1.jpeg')} style={styles.cardImage} />
                     <Text style={styles.cardText}>Product 1</Text>
                 </TouchableOpacity>
             </ScrollView>
+
             {/* Best Sellers Section */}
             <Text style={styles.sectionTitle}>Best Sellers</Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                <TouchableOpacity
-                    style={styles.card}
-                    onPress={() => navigation.navigate('ProductDetail')}
-                >
+                <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('ProductDetail')}>
                     <Image source={require('../assets/images/product2.jpeg')} style={styles.cardImage} />
                     <Text style={styles.cardText}>Product 2</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.card}
-                    onPress={() => navigation.navigate('ProductDetail')}
-                >
+                <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('ProductDetail')}>
                     <Image source={require('../assets/images/product2.jpeg')} style={styles.cardImage} />
                     <Text style={styles.cardText}>Product 2</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.card}
-                    onPress={() => navigation.navigate('ProductDetail')}
-                >
+                <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('ProductDetail')}>
                     <Image source={require('../assets/images/product2.jpeg')} style={styles.cardImage} />
                     <Text style={styles.cardText}>Product 2</Text>
                 </TouchableOpacity>
             </ScrollView>
+
             {/* Trending Products Section */}
             <Text style={styles.sectionTitle}>Trending</Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                <TouchableOpacity
-                    style={styles.card}
-                    onPress={() => navigation.navigate('ProductDetail')}
-                >
+                <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('ProductDetail')}>
                     <Image source={require('../assets/images/product3.jpeg')} style={styles.cardImage} />
                     <Text style={styles.cardText}>Product 3</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.card}
-                    onPress={() => navigation.navigate('ProductDetail')}
-                >
+                <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('ProductDetail')}>
                     <Image source={require('../assets/images/product3.jpeg')} style={styles.cardImage} />
                     <Text style={styles.cardText}>Product 3</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.card}
-                    onPress={() => navigation.navigate('ProductDetail')}
-                >
+                <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('ProductDetail')}>
                     <Image source={require('../assets/images/product3.jpeg')} style={styles.cardImage} />
                     <Text style={styles.cardText}>Product 3</Text>
                 </TouchableOpacity>
             </ScrollView>
         </ScrollView>
-    )
+    );
 }
 
-export default HomeScreen
+export default HomeScreen;
 
 const styles = StyleSheet.create({
     container: {
@@ -187,4 +170,4 @@ const styles = StyleSheet.create({
         height: 200,
         borderRadius: 10,
     },
-})
+});
